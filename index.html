@@ -1,401 +1,170 @@
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURELIUS - Rare & Fine Spirits</title>
+    <title>Voice for the Voiceless | Wildlife Protection</title>
     <style>
+        :root {
+            --primary: #2d5a27;
+            --accent: #e07a5f;
+            --light: #f4f1de;
+            --dark: #1d3557;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Cinzel', 'Playfair Display', 'Georgia', serif;
-            background-color: #0b0c10;
-            color: #c5a059;
+            background-color: var(--light);
+            color: #333;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* Typography Helper Classes */
-        .sans-serif {
-            font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
-        }
-
-        /* Header / Navigation */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 80px;
-            background: linear-gradient(to bottom, rgba(11,12,16,0.9), rgba(11,12,16,0));
-            z-index: 1000;
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            color: #d4af37;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         nav a {
-            color: #e0e0e0;
+            color: white;
             text-decoration: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
+            margin-left: 20px;
             transition: color 0.3s;
         }
 
         nav a:hover {
-            color: #d4af37;
+            color: var(--accent);
         }
 
-        /* Hero Section */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 10%;
-            background: radial-gradient(circle at 70% 50%, #1f1a14 0%, #0b0c10 70%);
-            position: relative;
-        }
-
-        .hero-text {
-            max-width: 550px;
-            z-index: 2;
-        }
-
-        .hero-subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: #8c734b;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .hero-title {
-            font-size: 64px;
-            font-weight: 400;
-            line-height: 1.1;
-            color: #ffffff;
-            margin-bottom: 25px;
-            letter-spacing: 2px;
-        }
-
-        .hero-description {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            color: #a0a0a0;
-            margin-bottom: 40px;
-            font-weight: 300;
-            line-height: 1.8;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            padding: 16px 40px;
-            border: 1px solid #d4af37;
-            color: #d4af37;
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transition: all 0.4s ease;
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            background-color: #d4af37;
-            color: #0b0c10;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
-        }
-
-        .hero-image-container {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .bottle-art {
-            width: 320px;
-            height: 500px;
-            background: linear-gradient(135deg, #2a1f10 0%, #080604 100%);
-            border-radius: 160px 160px 20px 20px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(212, 175, 55, 0.2);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .bottle-neck {
-            position: absolute;
-            top: -60px;
-            width: 60px;
-            height: 80px;
-            background: linear-gradient(90deg, #1f1a14, #4a3b2c, #1f1a14);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-bottom: none;
-        }
-
-        .bottle-cap {
-            position: absolute;
-            top: -80px;
-            width: 70px;
-            height: 25px;
-            background: #d4af37;
-            border-radius: 3px;
-        }
-
-        .label {
-            width: 70%;
-            height: 45%;
-            border: 1px solid #d4af37;
-            padding: 20px;
-            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: rgba(11, 12, 16, 0.85);
+            text-align: center;
+            color: white;
+            padding: 0 20px;
         }
 
-        .label-title {
-            font-size: 20px;
-            letter-spacing: 3px;
-            color: #ffffff;
-            margin-bottom: 5px;
-        }
-
-        .label-subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 9px;
-            letter-spacing: 2px;
-            color: #d4af37;
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             text-transform: uppercase;
         }
 
-        /* Features Section */
-        .features {
-            padding: 120px 10%;
-            background-color: #0e0f14;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(212, 175, 55, 0.05);
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(212, 175, 55, 0.3);
-        }
-
-        .feature-number {
-            font-size: 14px;
-            color: #d4af37;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .feature-title {
-            font-size: 22px;
-            color: #ffffff;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .feature-desc {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            color: #8a8a8a;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* Banner Section */
-        .quote-banner {
-            padding: 140px 15%;
-            text-align: center;
-            background: linear-gradient(rgba(11,12,16,0.85), rgba(11,12,16,0.85)), 
-                        radial-gradient(ellipse at center, #3a2a18 0%, #0b0c10 70%);
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .quote-text {
-            font-size: 32px;
-            font-style: italic;
-            color: #e5c158;
-            line-height: 1.5;
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
             margin-bottom: 30px;
-            font-weight: 300;
         }
 
-        .quote-author {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
-            letter-spacing: 4px;
-            color: #8c734b;
-            text-transform: uppercase;
+        .btn-cta {
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.3s;
         }
 
-        /* Footer */
-        footer {
-            padding: 60px 10% 40px 10%;
-            background-color: #07080a;
+        .btn-cta:hover {
+            background-color: #d0694e;
+            transform: scale(1.05);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 50px 5%;
+            background-color: white;
             text-align: center;
-            font-family: 'Montserrat', sans-serif;
         }
 
-        .footer-logo {
-            font-size: 20px;
-            letter-spacing: 4px;
-            color: #d4af37;
-            margin-bottom: 20px;
+        .stat-card h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
         }
 
-        .footer-text {
-            font-size: 11px;
-            color: #5a5a5a;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+        .cta-section {
+            padding: 60px 5%;
+            text-align: center;
+            background-color: var(--dark);
+            color: white;
         }
 
-        .disclaimer {
-            font-size: 10px;
-            color: #4a4a4a;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        /* Responsive Layout */
-        @media (max-width: 900px) {
-            .hero {
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                padding-top: 100px;
-            }
-
-            .hero-text {
-                margin-bottom: 50px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            header {
-                padding: 20px 40px;
-            }
+        footer {
+            background-color: #111;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo">Aurelius</a>
+        <div class="logo">WILDLIFE SAFE</div>
         <nav>
-            <ul>
-                <li><a href="#heritage">Heritage</a></li>
-                <li><a href="#craft">Craftsmanship</a></li>
-                <li><a href="#collection">Collection</a></li>
-            </ul>
+            <a href="#about">About</a>
+            <a href="#stats">Impact</a>
+            <a href="#action">Take Action</a>
         </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-text">
-            <span class="hero-subtitle">Single Malt Scotch Whisky</span>
-            <h1 class="hero-title">A Legacy Written in Gold</h1>
-            <p class="hero-description">
-                Aged for 25 years in hand-selected European oak casks. A masterwork of time, patience, and unyielding dedication to perfection.
-            </p>
-            <a href="#order" class="btn-primary">Discover The Rare Reserve</a>
+        <h1>Every Species Matters</h1>
+        <p>Over one million species are currently at risk of extinction. Join us today to protect fragile ecosystems and ensure a safer future for global wildlife.</p>
+        <a href="#action" class="btn-cta">Protect Wildlife Now</a>
+    </section>
+
+    <section class="stats" id="stats">
+        <div class="stat-card">
+            <h2>1,000,000+</h2>
+            <p>Species threatened worldwide</p>
         </div>
-        
-        <div class="hero-image-container">
-            <div class="bottle-art">
-                <div class="bottle-cap"></div>
-                <div class="bottle-neck"></div>
-                <div class="label">
-                    <div class="label-title">AURELIUS</div>
-                    <div class="label-subtitle">AGED 25 YEARS</div>
-                </div>
-            </div>
+        <div class="stat-card">
+            <h2>68%</h2>
+            <p>Average decline in wildlife populations since 1970</p>
+        </div>
+        <div class="stat-card">
+            <h2>100%</h2>
+            <p>Commitment needed to make a change</p>
         </div>
     </section>
 
-    <section class="features">
-        <div class="feature-card">
-            <span class="feature-number">01</span>
-            <h3 class="feature-title">Hand-Selected Casks</h3>
-            <p class="feature-desc">Matured exclusively in sherry-seasoned oak casks from Jerez, Spain, imparting deep rich tones and complexity.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-number">02</span>
-            <h3 class="feature-title">Pure Highland Water</h3>
-            <p class="feature-desc">Crafted using pristine spring water filtered through ancient mountain granite for unrivaled clarity.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-number">03</span>
-            <h3 class="feature-title">Master Distilled</h3>
-            <p class="feature-desc">Handcrafted in small batches by our Master Distiller using century-old copper pot distillation techniques.</p>
-        </div>
-    </section>
-
-    <section class="quote-banner">
-        <blockquote class="quote-text">
-            "It is not merely a spirit; it is a moment captured in amber, waiting to be unlocked."
-        </blockquote>
-        <div class="quote-author">— The Master Distiller's Guild</div>
+    <section class="cta-section" id="action">
+        <h2>Become Their Voice Today</h2>
+        <p style="margin: 20px 0;">Your contribution helps fund anti-poaching patrols, restore natural habitats, and rescue endangered animals.</p>
+        <a href="#" class="btn-cta">Donate Now</a>
     </section>
 
     <footer>
-        <div class="footer-logo">AURELIUS</div>
-        <p class="footer-text">© 2026 Aurelius Distilleries Ltd. All Rights Reserved.</p>
-        <p class="disclaimer">Please Drink Responsibly. Intended for audiences of legal drinking age.</p>
+        <p>&copy; 2026 Wildlife Safe Alliance. All rights reserved.</p>
     </footer>
 
 </body>
 </html>
-"""
-
-with open("liquor_advertisement.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print("HTML file generated successfully.")
